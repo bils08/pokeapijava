@@ -11,7 +11,15 @@ package com.poke.model;
  */
 public class PokeModel {
     
-    private String id, name, type, img, colorType;
+    private String id, name, type, img, colorType, desc;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public String getColorType() {
         return colorType;

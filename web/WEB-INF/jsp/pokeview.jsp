@@ -43,7 +43,7 @@
                     <div class="card poke-card" style="box-shadow: 2px 3px #888888; margin-top: 2px"> 
                         <img src="<%=model.getImg()%>" class="card-img-top" alt="<%=model.getImg()%>" style="background-color: lightgray">
                         <div class="card-body">
-                            <!--<h5 class="card-title"><%= //model.getName()%></h5>-->
+                            <h5 class="card-title"><%=model.getName()%></h5>
                             <a href="detail/<%=model.getName()%>"><%=model.getName()%></a>
                             <p class="card-text"><%=model.getId()%></p>
                             <p class="card-text"><button class="btn" style="background-color:<%=model.getColorType()%>;color: white"><%=model.getType()%></button></p>

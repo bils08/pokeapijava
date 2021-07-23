@@ -46,7 +46,7 @@ public class PokeController {
         return new ModelAndView("pokeview", "pokedata", pokelist);
     }
     
-    @RequestMapping(value="/detail/{name} ")
+    @RequestMapping(value="/detail/{name}")
     public ModelAndView detail(@PathVariable String name) {
         List<PokeModel> pokelist = new ArrayList<PokeModel>();
         pokeDao.getPokeSearch(name);        

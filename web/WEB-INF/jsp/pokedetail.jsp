@@ -27,8 +27,8 @@
     </head>
     <body>
         <% List<PokeModel> pokedata = (ArrayList) request.getAttribute("pokedata"); %>
-        <div style="background-color:green;height: 100%">
-            <img src="<%=pokedata.get(0).getImg()%>" class="card-img-top" alt="<%=pokedata.get(0).getImg()%>" >
+        <div style="background-color:<%=pokedata.get(0).getColorType()%>">
+            <img src="<%=pokedata.get(0).getImg()%>" class="card-img-top" alt="<%=pokedata.get(0).getImg()%>/>
         </div>
     </body>
 </html>

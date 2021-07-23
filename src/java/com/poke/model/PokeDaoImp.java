@@ -44,7 +44,7 @@ public class PokeDaoImp implements PokeDao {
         Map<Integer, String> pokeType = new HashMap<Integer, String>();
         Map<Integer, String> pokeColorType = new HashMap<Integer, String>();
         try {
-            URL url = new URL("https://pokeapi.co/api/v2/pokemon?limit=50&offse=100");
+            URL url = new URL("https://pokeapi.co/api/v2/pokemon?limit=9&offse=100");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setInstanceFollowRedirects(true);
@@ -161,12 +161,37 @@ public class PokeDaoImp implements PokeDao {
             pm.setImg(temptImg.get("front_default").toString());
             pm.setType(objType2.get("name").toString());
             pm.setColorType(getPokeColorType(id + ""));
-            
+            pm.setDesc(getPokeCharacteristic(id));
+//            getPokeCharacteristic(id);
             conn.disconnect();
         } catch(Exception ex) {
             ex.printStackTrace();
         }
         return pm;
+    }
+    
+    public String getPokeCharacteristic(int id) {
+//        PokeModel pm = new PokeModel();
+        String desc = "";
+        try {
+            URL url = new URL("https://pokeapi.co/api/v2/characteristic/" + id);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setInstanceFollowRedirects(false);
+            conn.setRequestMethod("GET");
+            conn.connect();
+            
+            InputStream input = conn.getInputStream();
+            JSONParser json = new JSONParser();
+            JSONObject obj = (JSONObject) json.parse(new InputStreamReader(input, "UTF-8"));
+            JSONArray detail = (JSONArray) obj.get("descriptions");
+            JSONObject descTemp = (JSONObject) detail.get(0);
+            desc = (String) descTemp.get("description");
+            System.out.println();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        return desc;
     }
     
     public String formatPokeId(int id) {
